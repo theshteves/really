@@ -81,7 +81,10 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(
             description='The missing package for Python 3')
 
-    VERSION = 0.1
+    parser.add_argument('version', metavar='version_number', help='Version number for build')
+
+    args = vars(parser.parse_args())
+    VERSION = str(args['version'])
 
     # Write Module
     module = open('__init__.py', 'w')
