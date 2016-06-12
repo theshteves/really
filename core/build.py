@@ -40,56 +40,83 @@ def number_to_word(num):
     return str(num)
 
 
-def generate_really():
+def generate_really(count):
     '''Construct Really class'''
 
-    header = r'''
+    class_header = r'''
 class Really():
     """Really Class:
     
     To be continued...
     """
+'''
 
+    methods = r'''
     def __init__(self, num):
         """Initialize Really instance"""
 
-        self.num = str(num)
+        self.num = num
 
 
     def __str__(self):
         """String representation"""
-        
-        return "Really(num='" + self.num + "')"
+
+        return "Really(num=\"" + self.num + "\")"
 
 '''
 
-    return header
+    # Generate methods
+    for n in range(count):
+
+        methods += r'''
+    def is_''' + number_to_word(n) + r'''(self):
+        """Verify whether num property is ''' + str(n) + r'''"""
+
+        return self.num == ''' + str(n) + r'''
+
+'''
+
+    return class_header + methods
 
 
 def generate_notreally():
     '''Construct NotReally class'''
 
-    return ''
+    class_header = r'''
+class NotReally():
+    """NotReally Class:
+
+    To be continued...
+    """
+'''
+
+    methods = r'''
+'''
+
+    return class_header + methods
 
 
 #
 # Execute on Script Call
 #
 if __name__ == '__main__':
-    
+
     # Command-Line Interface
     parser = argparse.ArgumentParser(
             description='The missing package for Python 3')
-
-    parser.add_argument('version', metavar='version_number', help='Version number for build')
+    parser.add_argument('version', metavar='version_number',
+            help='Version number for build')
+    parser.add_argument('methods', metavar='method_count',
+            help='Number of comparison methods')
 
     args = vars(parser.parse_args())
     VERSION = str(args['version'])
+    METHOD_COUNT = int(args['methods'])
 
     # Write Module
     module = open('__init__.py', 'w')
     module.write(generate_header(VERSION))
-    module.write(generate_really())
+    module.write(generate_really(METHOD_COUNT))
     module.write(generate_notreally())
     module.close()
 
