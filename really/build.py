@@ -15,6 +15,14 @@ def generate_header(version):
 
     return r'''"""Steven Kneiser's Really library
 
+  _______ _______ _______ _______ _______ _______ 
+ |\     /|\     /|\     /|\     /|\     /|\     /|
+ | +---+ | +---+ | +---+ | +---+ | +---+ | +---+ |
+ | |   | | |   | | |   | | |   | | |   | | |   | |
+ | |R  | | |E  | | |A  | | |L  | | |L  | | |Y  | |
+ | +---+ | +---+ | +---+ | +---+ | +---+ | +---+ |
+ |/_____\|/_____\|/_____\|/_____\|/_____\|/_____\|
+
 This module is a core library that:
 
     - provides foundational support
